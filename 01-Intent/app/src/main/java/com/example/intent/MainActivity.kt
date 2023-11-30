@@ -10,15 +10,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var btnMoveActivity: Button
     private lateinit var btnMoveActivityWithData: Button
+    private lateinit var btnMoveActivityWithObject: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         btnMoveActivity = findViewById(R.id.btn_move_activity)
         btnMoveActivityWithData = findViewById(R.id.btn_move_activity_data)
+        btnMoveActivityWithObject = findViewById(R.id.btn_move_activity_object)
 
         btnMoveActivity.setOnClickListener(this)
         btnMoveActivityWithData.setOnClickListener(this)
+        btnMoveActivityWithObject.setOnClickListener(this)
+
     }
 
     override fun onClick(view: View?) {
@@ -34,6 +38,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 moveToCalculatorWithData.putExtra(CalculatorActivity.EDIT_HEIGHT, 11.7)
                 moveToCalculatorWithData.putExtra(CalculatorActivity.EDIT_LENGTH, 23.1)
                 startActivity(moveToCalculatorWithData)
+            }
+            R.id.btn_move_activity_object -> {
+                val moveToPersonDetailWithObject =
+                    Intent(this@MainActivity, PersonDetailActivity::class.java)
+                val person = Person(
+                    "DicodingAcademy",
+                    5,
+                    "academy@dicoding.com",
+                    "Bandung"
+                )
+                val persons = ArrayList<Person>()
+                persons.add(person)
+                persons.add(Person("Rucci", 10,"rucci@gmail.com", "Bekasi"))
+                persons.add(Person("le", 13, "le@gmail.com", "Bandung"))
+
+                moveToPersonDetailWithObject.putExtra(PersonDetailActivity.PERSON_DETAIL, person)
+                moveToPersonDetailWithObject.putParcelableArrayListExtra(PersonDetailActivity.PERSON_DETAIL_ARRAY, persons)
+
+                startActivity(moveToPersonDetailWithObject)
             }
         }
     }
