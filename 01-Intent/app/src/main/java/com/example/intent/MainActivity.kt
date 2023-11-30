@@ -1,6 +1,7 @@
 package com.example.intent
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var btnMoveActivity: Button
     private lateinit var btnMoveActivityWithData: Button
     private lateinit var btnMoveActivityWithObject: Button
+    private lateinit var btnDialPhone: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,10 +20,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnMoveActivity = findViewById(R.id.btn_move_activity)
         btnMoveActivityWithData = findViewById(R.id.btn_move_activity_data)
         btnMoveActivityWithObject = findViewById(R.id.btn_move_activity_object)
+        btnDialPhone = findViewById(R.id.btn_dial_number)
 
         btnMoveActivity.setOnClickListener(this)
         btnMoveActivityWithData.setOnClickListener(this)
         btnMoveActivityWithObject.setOnClickListener(this)
+        btnDialPhone.setOnClickListener(this)
 
     }
 
@@ -57,6 +61,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 moveToPersonDetailWithObject.putParcelableArrayListExtra(PersonDetailActivity.PERSON_DETAIL_ARRAY, persons)
 
                 startActivity(moveToPersonDetailWithObject)
+            }
+            R.id.btn_dial_number -> {
+                val phoneNumber = "0895330757096"
+                val dialPhoneIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phoneNumber}"))
+                startActivity(dialPhoneIntent)
             }
         }
     }
