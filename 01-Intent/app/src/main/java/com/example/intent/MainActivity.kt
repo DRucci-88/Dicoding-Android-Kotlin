@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -13,6 +16,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var btnMoveActivityWithData: Button
     private lateinit var btnMoveActivityWithObject: Button
     private lateinit var btnDialPhone: Button
+    private lateinit var btnMoveActivityForResult: Button
+    private lateinit var tvResult: TextView
+    private val resultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == ChooseNumberActivity.RESULT_CODE && result.data != null) {
+            val selectedValue =
+                result.data?.getIntExtra(ChooseNumberActivity.EXTRA_SELECTED_VALUE, 0)
+            tvResult.text = "Hasil : $selectedValue"
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,11 +36,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnMoveActivityWithData = findViewById(R.id.btn_move_activity_data)
         btnMoveActivityWithObject = findViewById(R.id.btn_move_activity_object)
         btnDialPhone = findViewById(R.id.btn_dial_number)
+        btnMoveActivityForResult = findViewById(R.id.btn_move_for_result)
+        tvResult = findViewById(R.id.tv_result)
 
         btnMoveActivity.setOnClickListener(this)
         btnMoveActivityWithData.setOnClickListener(this)
         btnMoveActivityWithObject.setOnClickListener(this)
         btnDialPhone.setOnClickListener(this)
+        btnMoveActivityForResult.setOnClickListener(this)
 
     }
 
@@ -66,6 +84,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val phoneNumber = "0895330757096"
                 val dialPhoneIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${phoneNumber}"))
                 startActivity(dialPhoneIntent)
+            }
+            R.id.btn_move_for_result -> {
+                val moveForResultIntent = Intent(this@MainActivity, ChooseNumberActivity::class.java)
+                resultLauncher.launch(moveForResultIntent)
             }
         }
     }
