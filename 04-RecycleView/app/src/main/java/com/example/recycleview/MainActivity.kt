@@ -19,20 +19,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        listHero.addAll(getListHeroes())
+        listHero.addAll(getListHeroes)
         rvHeroes = findViewById(R.id.rv_heroes)
         rvHeroes.setHasFixedSize(true)
         showRecycleList()
     }
 
-    @SuppressLint("Recycle")
-    private fun getListHeroes() : ArrayList<Hero> {
+    private val getListHeroes : ArrayList<Hero> get() {
         val dataNames: Array<String> = resources.getStringArray(R.array.data_name)
         val dataDescriptions: Array<String> = resources.getStringArray(R.array.data_description)
-        val dataPhotos: TypedArray = resources.obtainTypedArray(R.array.data_photo)
+//        val dataPhotos: TypedArray = resources.obtainTypedArray(R.array.data_photo)
+        val dataPhotos: Array<String> = resources.getStringArray(R.array.data_photo)
+
         val listHero = ArrayList<Hero>()
         for (i in dataNames.indices){
-            listHero.add(Hero(dataNames[i], dataDescriptions[i], dataPhotos.getResourceId(i, -1)))
+//            listHero.add(Hero(dataNames[i], dataDescriptions[i], dataPhotos.getResourceId(i, -1)))
+            listHero.add(Hero(dataNames[i], dataDescriptions[i], dataPhotos[i]))
         }
         return listHero
     }
