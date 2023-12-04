@@ -9,41 +9,52 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.intent.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var btnMoveActivity: Button
-    private lateinit var btnMoveActivityWithData: Button
-    private lateinit var btnMoveActivityWithObject: Button
-    private lateinit var btnDialPhone: Button
-    private lateinit var btnMoveActivityForResult: Button
-    private lateinit var tvResult: TextView
+    private lateinit var bind: ActivityMainBinding
+
+//    private lateinit var btnMoveActivity: Button
+//    private lateinit var btnMoveActivityWithData: Button
+//    private lateinit var btnMoveActivityWithObject: Button
+//    private lateinit var btnDialPhone: Button
+//    private lateinit var btnMoveActivityForResult: Button
+//    private lateinit var tvResult: TextView
     private val resultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == ChooseNumberActivity.RESULT_CODE && result.data != null) {
             val selectedValue =
                 result.data?.getIntExtra(ChooseNumberActivity.EXTRA_SELECTED_VALUE, 0)
-            tvResult.text = "Hasil : $selectedValue"
+//            tvResult.text = "Hasil : $selectedValue"
+            bind.tvResult.text = "Hasil : $selectedValue"
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bind = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
 
-        btnMoveActivity = findViewById(R.id.btn_move_activity)
-        btnMoveActivityWithData = findViewById(R.id.btn_move_activity_data)
-        btnMoveActivityWithObject = findViewById(R.id.btn_move_activity_object)
-        btnDialPhone = findViewById(R.id.btn_dial_number)
-        btnMoveActivityForResult = findViewById(R.id.btn_move_for_result)
-        tvResult = findViewById(R.id.tv_result)
+//        btnMoveActivity = findViewById(R.id.btn_move_activity)
+//        btnMoveActivityWithData = findViewById(R.id.btn_move_activity_data)
+//        btnMoveActivityWithObject = findViewById(R.id.btn_move_activity_object)
+//        btnDialPhone = findViewById(R.id.btn_dial_number)
+//        btnMoveActivityForResult = findViewById(R.id.btn_move_for_result)
+//        tvResult = findViewById(R.id.tv_result)
+//
+//        btnMoveActivity.setOnClickListener(this)
+//        btnMoveActivityWithData.setOnClickListener(this)
+//        btnMoveActivityWithObject.setOnClickListener(this)
+//        btnDialPhone.setOnClickListener(this)
+//        btnMoveActivityForResult.setOnClickListener(this)
 
-        btnMoveActivity.setOnClickListener(this)
-        btnMoveActivityWithData.setOnClickListener(this)
-        btnMoveActivityWithObject.setOnClickListener(this)
-        btnDialPhone.setOnClickListener(this)
-        btnMoveActivityForResult.setOnClickListener(this)
+        bind.btnMoveActivity.setOnClickListener(this)
+        bind.btnMoveActivityData.setOnClickListener(this)
+        bind.btnMoveActivityObject.setOnClickListener(this)
+        bind.btnDialNumber.setOnClickListener(this)
+        bind.btnMoveForResult.setOnClickListener(this)
 
     }
 
