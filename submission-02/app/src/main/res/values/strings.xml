@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">Submission-02</string>
+    <string name="book_name">Nama Buku</string>
+    <string name="book_description">Deskripsi Buku</string>
+    <string name="lorem_ipsum_placeholder">
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    </string>
+
+    <integer-array name="book_children_image_list">
+        <item>@drawable/children_1</item>
+        <item>@drawable/children_5</item>
+        <item>@drawable/children_3</item>
+        <item>@drawable/children_4</item>
+        <item>@drawable/children_5</item>
+        <item>@drawable/children_6</item>
+        <item>@drawable/children_7</item>
+        <item>@drawable/children_8</item>
+        <item>@drawable/children_9</item>
+        <item>@drawable/children_10</item>
+    </integer-array>
+
+    <integer-array name="book_fiction_image_list">
+        <item>@drawable/fiction_1</item>
+        <item>@drawable/fiction_2</item>
+        <item>@drawable/fiction_3</item>
+        <item>@drawable/fiction_4</item>
+        <item>@drawable/fiction_5</item>
+        <item>@drawable/fiction_6</item>
+        <item>@drawable/fiction_7</item>
+        <item>@drawable/fiction_8</item>
+        <item>@drawable/fiction_9</item>
+        <item>@drawable/fiction_10</item>
+    </integer-array>
+
+    <integer-array name="book_top_image_list">
+        <item>@drawable/top_1</item>
+        <item>@drawable/top_2</item>
+        <item>@drawable/top_3</item>
+        <item>@drawable/top_4</item>
+        <item>@drawable/top_5</item>
+        <item>@drawable/top_6</item>
+        <item>@drawable/top_7</item>
+        <item>@drawable/top_8</item>
+        <item>@drawable/top_9</item>
+        <item>@drawable/top_10</item>
+    </integer-array>
 </resources>
