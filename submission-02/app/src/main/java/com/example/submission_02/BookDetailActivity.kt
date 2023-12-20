@@ -19,7 +19,7 @@ class BookDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityBookDetailBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_book_detail)
+        setContentView(bind.root)
 
         val book = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra<Book>(EXTRA_BOOK, Book::class.java)
