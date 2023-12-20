@@ -10,6 +10,12 @@ class ListBookAdapter(
     private val listBook: ArrayList<Book>
 ) : RecyclerView.Adapter<ListBookAdapter.ListViewHolder>() {
 
+    private lateinit var onItemCallback: OnItemCallback
+
+    fun setOnItemCallback(onItemCallback: OnItemCallback) {
+        this.onItemCallback = onItemCallback
+    }
+
     class ListViewHolder(val bind: ItemListBookBinding) : RecyclerView.ViewHolder(bind.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -30,5 +36,13 @@ class ListBookAdapter(
         Log.d(MainActivity::class.simpleName, holder.bind.tvBookTitleItem.text.toString())
         Log.d("Rucci", listBook[position].toString())
         Log.d("Rucci", holder.bind.tvBookTitleItem.toString())
+
+        holder.itemView.setOnClickListener {
+            onItemCallback.onItemClicked(listBook[position])
+        }
+    }
+
+    interface OnItemCallback {
+        fun onItemClicked(book: Book)
     }
 }
