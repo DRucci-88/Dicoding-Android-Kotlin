@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission_02.databinding.ActivityMainBinding
 
@@ -13,6 +15,10 @@ class MainActivity : AppCompatActivity() {
     private val listBook = ArrayList<Book>()
 
     private fun init() {
+
+        actionBar?.title  = "List of Book"
+        supportActionBar?.title = "List of Book"
+
         listBook.addAll(getAllListBook)
         bind.rvListBook.layoutManager = LinearLayoutManager(this)
         val listBookAdapter = ListBookAdapter(listBook)
@@ -60,5 +66,20 @@ class MainActivity : AppCompatActivity() {
         bind = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bind.root)
         init()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.main_menu_profile -> {
+                val goToProfile = Intent(this@MainActivity, ProfileActivity::class.java)
+                startActivity(goToProfile)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

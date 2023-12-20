@@ -30,5 +30,7 @@ class BookDetailActivity : AppCompatActivity() {
             bind.tvBookDescription.text = book.description
             bind.ivBookImage.setImageResource(book.image)
         }
+        actionBar?.title = book?.title ?: "Error Title"
+        supportActionBar?.title = book?.title ?: "Error Title"
     }
 }
