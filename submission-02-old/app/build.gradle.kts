@@ -8,7 +8,7 @@ android {
     namespace = "com.example.submission_02"
     compileSdk = 34
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 
